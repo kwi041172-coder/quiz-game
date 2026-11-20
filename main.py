@@ -1,7 +1,8 @@
 """나만의 퀴즈 게임 - 프로그램 시작점. 실행: python main.py"""
 
 from default_quizzes import get_default_quizzes
-from input_utils import read_int
+from input_utils import read_int, read_text
+from quiz import Quiz
 
 
 def show_menu():
@@ -76,6 +77,27 @@ def play_quiz(quizzes):
     return correct_count, total_count
 
 
+def add_quiz(quizzes):
+    """사용자에게 문제, 선택지 4개, 정답 번호를 입력받아 퀴즈를 추가한다."""
+    print()
+    print("📌 새로운 퀴즈를 추가합니다.")
+    print()
+
+    question = read_text("문제를 입력하세요: ")
+
+    choices = []
+    for number in range(1, 5):
+        choice = read_text(f"선택지 {number}: ")
+        choices.append(choice)
+
+    answer = read_int("정답 번호 (1-4): ", 1, 4)
+
+    quizzes.append(Quiz(question, choices, answer))
+
+    print()
+    print("✅ 퀴즈가 추가되었습니다!")
+
+
 def main():
     """메뉴를 반복해서 보여주고 선택에 따라 기능을 실행한다."""
     quizzes = get_default_quizzes()
@@ -88,7 +110,7 @@ def main():
             if choice == 1:
                 play_quiz(quizzes)
             elif choice == 2:
-                print("📌 퀴즈 추가 기능은 준비 중입니다.")
+                                add_quiz(quizzes)
             elif choice == 3:
                 print("📋 퀴즈 목록 기능은 준비 중입니다.")
             elif choice == 4:
