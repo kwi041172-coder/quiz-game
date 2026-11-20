@@ -114,9 +114,29 @@ def show_quiz_list(quizzes):
     print("-" * 40)
 
 
+def update_best_score(best_score, new_score):
+    """새 점수를 최고 점수와 비교한다.
+
+    (갱신된 최고 점수, 새 기록 여부)를 반환한다.
+    기록이 없거나 새 점수가 더 높으면 새 기록이다. 같으면 새 기록이 아니다.
+    """
+    if best_score is None or new_score > best_score:
+        return new_score, True
+    return best_score, False
+
+
+def show_best_score(best_score):
+    """최고 점수를 출력한다. 아직 퀴즈를 풀지 않았으면 안내한다."""
+    if best_score is None:
+        print("⚠️ 아직 퀴즈를 풀지 않았습니다. 먼저 퀴즈를 풀어 보세요.")
+        return
+    print(f"🏆 최고 점수: {best_score}점")
+
+
 def main():
     """메뉴를 반복해서 보여주고 선택에 따라 기능을 실행한다."""
     quizzes = get_default_quizzes()
+    best_score = None  # 아직 퀴즈를 풀지 않았으면 None
 
     try:
         while True:
@@ -124,13 +144,19 @@ def main():
             choice = read_int("선택: ", 1, 5)
 
             if choice == 1:
-                play_quiz(quizzes)
+                result = play_quiz(quizzes)
+                if result is not None:
+                    correct_count, total_count = result
+                    score = calculate_score(correct_count, total_count)
+                    best_score, is_new_record = update_best_score(best_score, score)
+                    if is_new_record:
+                        print("🎉 새로운 최고 점수입니다!")
             elif choice == 2:
-                                add_quiz(quizzes)
+                add_quiz(quizzes)
             elif choice == 3:
-                                show_quiz_list(quizzes)
+                show_quiz_list(quizzes)
             elif choice == 4:
-                print("🏆 점수 확인 기능은 준비 중입니다.")
+                show_best_score(best_score)
             elif choice == 5:
                 print("👋 프로그램을 종료합니다. 안녕히 가세요!")
                 break
