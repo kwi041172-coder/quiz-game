@@ -132,3 +132,6 @@ quiz-game/
 - `Feat:`, `Fix:`, `Docs:`, `Refactor:` 접두어로 작업 내용이 드러나는 커밋 메시지를 사용했습니다.
 - 퀴즈 풀기 기능은 `feature/play-quiz` 브랜치에서 개발한 뒤 `main`에 병합했습니다.
 - 저장소를 별도 폴더에 `clone`하여 수정·`push`한 뒤, 원래 작업 폴더에서 `pull`로 반영되는지 확인했습니다.
+
+
+> clone 실습: 이 줄은 clone한 별도 폴더(quiz-game-clone)에서 작성해 push한 뒤, 원래 폴더에서 pull로 가져왔습니다.
