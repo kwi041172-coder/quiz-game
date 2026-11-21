@@ -135,3 +135,36 @@ quiz-game/
 
 
 > clone 실습: 이 줄은 clone한 별도 폴더(quiz-game-clone)에서 작성해 push한 뒤, 원래 폴더에서 pull로 가져왔습니다.
+
+## 9. 제출물
+
+### GitHub 저장소 URL
+
+---
+https://github.com/kwi******-co***/quiz-game.git
+---
+
+### 개발 환경 스크린샷
+
+```
+python --version
+git --version
+git config --global user.name
+git remote -v
+```
+
+![개발 환경](docs/screenshots/env.png)
+
+### 프로그램 실행 결과 스크린샷
+
+---
+7. 실행 화면 참조
+---
+
+### git log --oneline --graph 스크린샷
+
+```
+git log --oneline --graph
+```
+
+![git log --oneline --graph 결과](docs/screenshots/git_log_graph.png)
